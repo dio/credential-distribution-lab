@@ -1,5 +1,7 @@
 # Credential Distribution Lab
 
+[![Credential research](https://github.com/dio/credential-distribution-lab/actions/workflows/verify.yml/badge.svg)](https://github.com/dio/credential-distribution-lab/actions/workflows/verify.yml)
+
 One Go authd implementation, a SQLite `:memory:` credential store, and Envoy
 upstream extproc filters shared by LLM HTTP and real EAIGW MCP proxy egress.
 This is an Apache-2.0 research reference, not a production authentication service.
@@ -49,7 +51,7 @@ The integration test intentionally fails if `MCP_PROXY_BIN` is absent: a missing
 real MCP fixture must not silently turn a partial run into a passing full spike.
 
 See [CI and public research repository design](CI-DESIGN.md) for implemented checks,
-reproducible packaging, and publication boundaries. No hosted CI result is claimed.
+reproducible packaging, and publication boundaries. Hosted runs publish a separate summary and evidence artifact for each check.
 
 ## Research questions and executable model
 

@@ -6,7 +6,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parent.parent
 sources = "\n".join(p.read_text() for p in root.rglob("*_test.go"))
 tests = set(re.findall(r"^func ((?:Test|Example)\w+)\(", sources, re.M))
-for name in ("RESEARCH.md", "SPEC.md", "README.md", "CI-DESIGN.md"):
+for name in ("RESEARCH.md", "SPEC.md", "README.md", "CI-DESIGN.md", "RESEARCH-RESULTS.md", "SECURITY.md", "THIRD_PARTY.md"):
     text = (root / name).read_text()
     for target in re.findall(r"\]\(([^)]+)\)", text):
         if "://" not in target and not (root / target.split("#")[0]).exists():

@@ -81,4 +81,4 @@ The [research verification record](RESEARCH-RESULTS.md) supersedes the previous
 blocked full-rerun status: the complete Envoy/MCP suite now passes locally after
 archive verification, including the security fixes. It also records bounded model
 exploration, expected rollback limitations, and the new concurrent-reader test.
-This still does not establish hosted Linux CI or secured Envoy integration.
+See the linked hosted runs for Linux CI evidence. This still does not establish secured Envoy integration.

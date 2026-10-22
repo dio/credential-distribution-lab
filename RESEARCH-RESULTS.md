@@ -51,8 +51,31 @@ The workflow was checked with actionlint 1.7.12 and shell syntax validation. It 
 actions by full SHA, Go 1.27.1, an official Envoy image digest, and the MCP source
 archive checksum. It supports both the current notes layout and standalone extraction.
 
-Not yet established: hosted GitHub execution; the pinned Linux binary on the Ubuntu
-runner; secured Envoy identity provisioning/rotation; actual dispatch-time ticket
+The historical local run above did not qualify the hosted Linux environment; see
+the hosted evidence below for that separate tier. Remaining architectural gaps:
+secured Envoy identity provisioning/rotation; actual dispatch-time ticket
 revalidation; arbitrary publisher failure/clock skew; host swap/dump guarantees.
 Envoy's historical delayed 504 denial behavior remains a known placement observation.
-Repository creation, licensing and public publication remain separate work.
+The research is now published as `dio/credential-distribution-lab` under Apache-2.0.
+
+
+## Hosted runs and evidence
+
+The [first hosted execution](https://github.com/dio/credential-distribution-lab/actions/runs/39719228988)
+completed successfully: all six checks passed. It tests source commit
+`83587722697944eab4840b53dbc169fd367b6480` on Ubuntu 24.04,
+Linux amd64, with Go 1.27.1 and the pinned Envoy image/MCP archive. Each lane uploads
+its outcome, test JSON, environment and source hashes. The model and security lanes
+exercise the same experiments as the local reference. Placement independently
+qualifies the actual Linux Envoy/MCP path.
+
+Consult the linked run for each lane's terminal conclusion; an in-progress, skipped
+or failed lane is not a completed verification. The
+[workflow history](https://github.com/dio/credential-distribution-lab/actions/workflows/verify.yml)
+identifies subsequent tested commits, including the migration to SHA-pinned official
+Node 24 actions. The README badge reports current workflow status and does not expand
+the architectural guarantees documented in SPEC.md and RESEARCH.md.
+
+Expected-limit controls remain labelled as such in hosted summaries. Passing them
+means the known baseline flaws and cold-authority rollback limit were reproduced,
+not mitigated. The real MCP fixture is still not race-instrumented.
