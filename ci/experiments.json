@@ -1,0 +1,109 @@
+{
+  "model": {
+    "required": [
+      "github.com/dio/credential-distribution-lab/model/TestBoundedSchedules",
+      "github.com/dio/credential-distribution-lab/model/TestChannelPermutations",
+      "github.com/dio/credential-distribution-lab/model/TestRevocationAndDispatchBoundary",
+      "github.com/dio/credential-distribution-lab/model/TestRestartAndPublisherRollbackLimit",
+      "github.com/dio/credential-distribution-lab/model/TestUseBindingAndRetry",
+      "github.com/dio/credential-distribution-lab/model/TestInvalidPublications",
+      "github.com/dio/credential-distribution-lab/model/ExampleWorld",
+      "github.com/dio/credential-distribution-lab/model/TestLongSchedules",
+      "github.com/dio/credential-distribution-lab/model/TestActivationCounterexample",
+      "github.com/dio/credential-distribution-lab/model/TestUseBindingAndRetry/tenant",
+      "github.com/dio/credential-distribution-lab/model/TestUseBindingAndRetry/backend",
+      "github.com/dio/credential-distribution-lab/model/TestUseBindingAndRetry/destination",
+      "github.com/dio/credential-distribution-lab/model/TestUseBindingAndRetry/key",
+      "github.com/dio/credential-distribution-lab/model/TestUseBindingAndRetry/version",
+      "github.com/dio/credential-distribution-lab/model/TestInvalidPublications/epoch",
+      "github.com/dio/credential-distribution-lab/model/TestInvalidPublications/rollback",
+      "github.com/dio/credential-distribution-lab/model/TestInvalidPublications/equivocation",
+      "github.com/dio/credential-distribution-lab/model/TestInvalidPublications/foreign-scope",
+      "github.com/dio/credential-distribution-lab/model/TestInvalidPublications/late",
+      "github.com/dio/credential-distribution-lab/model/TestInvalidPublications/challenge"
+    ],
+    "limitations": [
+      "TestRestartAndPublisherRollbackLimit: cold restart cannot detect trusted authority rollback",
+      "TestRevocationAndDispatchBoundary: disconnected revocation is lease-bounded"
+    ]
+  },
+  "security": {
+    "required": [
+      "github.com/dio/credential-distribution-lab/TestStoreConcurrencyAndMemory",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation",
+      "github.com/dio/credential-distribution-lab/TestSecureBootstrapReplayAndLease",
+      "github.com/dio/credential-distribution-lab/TestSecureSnapshotValidation",
+      "github.com/dio/credential-distribution-lab/TestSecureExpiredSubscriberCannotRenew",
+      "github.com/dio/credential-distribution-lab/TestSecureExpiredProxyCannotResolve",
+      "github.com/dio/credential-distribution-lab/TestSecureSlowBodyDoesNotBlockPublication",
+      "github.com/dio/credential-distribution-lab/TestSecureLeaseExpiresWhileLookupQueued",
+      "github.com/dio/credential-distribution-lab/TestSecureExpiredPublisherCannotRenew",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/not_ready_before_bootstrap",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/scoped_delivery",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/legitimate_proxy",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/direct_plaintext_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/no_client_certificate_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/anonymous_publisher_request_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/wrong_proxy_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/forged_backend_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/wrong_environment_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/unknown_issuer_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/wrong_subscriber_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/subscription_escalation_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/wrong_publisher_rejected",
+      "github.com/dio/credential-distribution-lab/TestSecureIdentityAndIsolation/same_identity_cert_rotation",
+      "github.com/dio/credential-distribution-lab/TestSecureBootstrapReplayAndLease/old_session_replay",
+      "github.com/dio/credential-distribution-lab/TestSecureBootstrapReplayAndLease/revocation_then_restart",
+      "github.com/dio/credential-distribution-lab/TestSecureBootstrapReplayAndLease/publisher_rollback",
+      "github.com/dio/credential-distribution-lab/TestSecureBootstrapReplayAndLease/publisher_equivocation",
+      "github.com/dio/credential-distribution-lab/TestSecureBootstrapReplayAndLease/invalid_snapshot_is_atomic",
+      "github.com/dio/credential-distribution-lab/TestSecureBootstrapReplayAndLease/epoch_change_requires_new_authority",
+      "github.com/dio/credential-distribution-lab/TestSecureBootstrapReplayAndLease/lease_expiry",
+      "github.com/dio/credential-distribution-lab/TestSecureBootstrapReplayAndLease/publisher_outage",
+      "github.com/dio/credential-distribution-lab/TestSecureSnapshotValidation/slow_bootstrap_does_not_extend_lease",
+      "github.com/dio/credential-distribution-lab/TestSecureSnapshotValidation/complete_snapshot_removes_omitted_credentials",
+      "github.com/dio/credential-distribution-lab/TestSecureSnapshotValidation/header_control_character",
+      "github.com/dio/credential-distribution-lab/TestSecureSnapshotValidation/duplicate_key",
+      "github.com/dio/credential-distribution-lab/TestSecureSnapshotValidation/wrong_subscription",
+      "github.com/dio/credential-distribution-lab/TestSecureSnapshotValidation/oversized_lease",
+      "github.com/dio/credential-distribution-lab/TestSecureSnapshotValidation/zero_lease"
+    ]
+  },
+  "controls": {
+    "required": [
+      "github.com/dio/credential-distribution-lab/TestSecurityReviewUnauthenticatedDelivery",
+      "github.com/dio/credential-distribution-lab/TestSecurityReviewDirectGRPCDisclosure",
+      "github.com/dio/credential-distribution-lab/TestSecurityReviewRestartReplay",
+      "github.com/dio/credential-distribution-lab/TestResearchTrustedPublisherRollback"
+    ],
+    "limitations": [
+      "TestSecurityReviewUnauthenticatedDelivery",
+      "TestSecurityReviewDirectGRPCDisclosure",
+      "TestSecurityReviewRestartReplay",
+      "TestResearchTrustedPublisherRollback"
+    ]
+  },
+  "research": {
+    "required": [
+      "github.com/dio/credential-distribution-lab/TestResearchRevocationUnderReaders"
+    ]
+  },
+  "placement": {
+    "required": [
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream",
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream/control",
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream/missing",
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream/inject_and_spoof",
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream/scope",
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream/rotation",
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream/revocation_and_old_update",
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream/expiry",
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream/real_mcp",
+      "github.com/dio/credential-distribution-lab/TestLocalUpstream/outage_restart"
+    ],
+    "limitations": [
+      "Full-suite controls also run here; their passes reproduce baseline flaws and trusted-publisher cold-start rollback.",
+      "Placement uses the plaintext local fixture, not secured Envoy identity delivery."
+    ]
+  }
+}

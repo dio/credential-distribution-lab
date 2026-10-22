@@ -1,0 +1,24 @@
+package main
+
+import (
+ "context"
+ "fmt"
+ "io"
+ "log/slog"
+ "net/http"
+ "os"
+
+ "github.com/envoyproxy/ai-gateway/internal/filterapi"
+ "github.com/envoyproxy/ai-gateway/internal/mcpproxy"
+ "github.com/envoyproxy/ai-gateway/internal/metrics"
+ "github.com/envoyproxy/ai-gateway/internal/tracing/tracingapi"
+ "go.opentelemetry.io/otel/metric/noop"
+)
+func main(){
+ logger:=slog.New(slog.NewTextHandler(io.Discard,nil))
+ cfg,mux,err:=mcpproxy.NewMCPProxy(logger,metrics.NewMCP(noop.NewMeterProvider().Meter("spike"),nil),tracingapi.NoopMCPTracer{},mcpproxy.NewPBKDF2AesGcmSessionCrypto("local-test-only",100),nil)
+ if err!=nil{panic(err)}
+ err=cfg.LoadConfig(context.Background(),&filterapi.Config{MCPConfig:&filterapi.MCPConfig{BackendListenerAddr:"http://127.0.0.1:"+os.Args[2]+"/mcp",Routes:[]filterapi.MCPRoute{{Name:"spike",Backends:[]filterapi.MCPBackend{{Name:"fake"}}}}}})
+ if err!=nil{panic(err)}
+ if err=http.ListenAndServe("127.0.0.1:"+os.Args[1],mux);err!=nil{fmt.Fprintln(os.Stderr,err);os.Exit(1)}
+}
