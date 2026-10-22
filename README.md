@@ -105,3 +105,22 @@ uses plaintext local RPC; the separate security suite exercises mutual TLS.
 
 See [the protocol spec](SPEC.md), [research design](RESEARCH.md), and RESULTS.md for observed
 behavior and limits. Run `go vet ./...` for static analysis.
+
+## Related research
+
+[**dio/control-plane-replica-lab**](https://github.com/dio/control-plane-replica-lab)
+is the sibling architecture study: Segment's
+[ctlstore](https://web.archive.org/web/20250323130234/https://segment.com/blog/separating-our-data-and-control-planes-with-ctlstore/)
+re-based on Turso Sync for replication, with a Postgres CDC origin.
+
+Both repos start from the same premise — a local replica is stale, and you ship
+anyway — and take opposite ends of it. This repo asks what a stale local replica may
+**authorize**: revocation boundaries, activation consistency, use binding, verified by
+an executable harness. That repo asks how the replica **gets there** and what the
+staleness costs: replication topology, bootstrap under instance churn, read-path
+fan-out, and sidecar-vs-per-container replica placement.
+
+The seam is staleness observability. A revocation boundary is only enforceable if
+staleness is visible from inside the reader, so that repo's staleness spike feeds this
+one's limitation controls. Note that no Turso delivery path is exercised here; it is
+paper analysis there and runnable in neither repo yet.
